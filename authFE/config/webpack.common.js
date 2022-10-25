@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 
 module.exports = {
-  // entry: '../src/index.ts',
+  entry: path.resolve(__dirname, '../src/index.ts'),
 
   module: {
     rules: [
@@ -18,9 +18,5 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     modules: [path.resolve(__dirname, '../src'), '../node_modules'],
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: '../public/index.html',
-  //   }),
-  // ],
+
 };

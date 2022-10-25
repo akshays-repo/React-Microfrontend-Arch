@@ -3,6 +3,8 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
+const path = require('path')
+
 
 const devConfig = {
   mode: 'development',
@@ -12,9 +14,9 @@ const devConfig = {
   devServer: {
     port: 8082,
     historyApiFallback: {
-      index: 'index.html',
+      index: path.resolve(__dirname, '../public/index.html'),
     },
-    // static: __dirname + 'containerFE/public/',
+    static: path.resolve(__dirname, '../public'),
 
   },
   plugins: [
@@ -22,12 +24,12 @@ const devConfig = {
       name: 'auth',
       filename: 'remoteEntry.js',
       exposes: {
-        './AuthApp': './src/bootstrap',
+        './AuthApp': path.resolve(__dirname, '../src/bootstrap.tsx'),
       },
       shared: packageJson.dependencies,
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: path.resolve(__dirname, '../public/index.html'),
     }),
   ],
 };

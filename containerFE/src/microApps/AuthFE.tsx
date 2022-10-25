@@ -13,16 +13,16 @@ const AuthFE = () => {
 
   useEffect(() => {
     console.log("Auth Fe");
-    // const { onParentNavigate } = mount(ref.current, {
-    //   initialPath: location.pathname,
-    //   onNavigate: ({ pathname: nextPathName }: { pathname: string }) => {
-    //     const pathName = location.pathname;
-    //     if (pathName !== nextPathName) {
-    //       navigate(nextPathName);
-    //     }
-    //   },
-    //   onSignIn,
-    // });
+    const { onParentNavigate } = mount(ref.current, {
+      initialPath: location.pathname,
+      onNavigate: ({ pathname: nextPathName }: { pathname: string }) => {
+        const pathName = location.pathname;
+        if (pathName !== nextPathName) {
+          navigate(nextPathName);
+        }
+      },
+      onSignIn,
+    });
 
     // TODO: Need to find the solution to call this method
     // history.listen(onParentNavigate);
@@ -30,7 +30,7 @@ const AuthFE = () => {
     return () => {};
   }, []);
 
-  return <div>AuthFE</div>;
+  return <div ref={ref} />;
 };
 
 export default AuthFE;
