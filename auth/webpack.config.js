@@ -44,15 +44,16 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "auth",
+      name: "app1",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        './Auth': './src/bootstrap',
+        './App1Index': './src/bootstrap',
       },
       shared: {
         ...deps,
         react: {
+          eager: true,
           singleton: true,
           requiredVersion: deps.react,
         },

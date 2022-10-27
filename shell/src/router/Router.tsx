@@ -12,8 +12,8 @@ import {
   shellBrowserHistory,
 } from "./constants";
 
-const App1Lazy = lazy(() => import("../components/App1"));
-const App2Lazy = lazy(() => import("../components/App2"));
+const App1Lazy = lazy(() => import("../microApps/Authentication"));
+const App2Lazy = lazy(() => import("../microApps/App2"));
 
 export function Router() {
   return (

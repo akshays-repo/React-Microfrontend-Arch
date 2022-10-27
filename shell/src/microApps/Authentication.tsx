@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { mount } from "auth/Auth";
-import { app1RoutingPrefix, shellBrowserHistory } from "../routing/constants";
+import { mount } from "app1/App1Index";
+import { app1RoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
 const app1Basename = `/${app1RoutingPrefix}`;
@@ -20,7 +20,7 @@ export default () => {
       navigate(newPathname);
     };
 
-    window.addEventListener("[auth] navigated", app2NavigationEventHandler);
+    window.addEventListener("[app1] navigated", app2NavigationEventHandler);
 
     // Listen to navigation events in shell app to notify app1 mfe.
     const unlistenHistoryChanges = shellBrowserHistory.listen(
@@ -45,7 +45,7 @@ export default () => {
 
     return () => {
       window.removeEventListener(
-        "[auth] navigated",
+        "[app1] navigated",
         app2NavigationEventHandler
       );
       unlistenHistoryChanges();
