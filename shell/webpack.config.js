@@ -47,21 +47,22 @@ module.exports = {
       name: "shell",
       filename: "remoteEntry.js",
       remotes: {
-        app1: 'app1@http://localhost:8081/remoteEntry.js',
+        app1: 'app1@https://whimsical-cucurucho-66e6ae.netlify.app/remoteEntry.js',
         app2: 'app2@http://localhost:8082/remoteEntry.js',
       },
       exposes: {},
-      shared: {
-        ...deps,
-        react: {
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: deps["react-dom"],
-        },
-      },
+      shared: deps
+      // {
+      //   ...deps,
+      //   react: {
+      //     singleton: true,
+      //     requiredVersion: deps.react,
+      //   },
+      //   "react-dom": {
+      //     singleton: true,
+      //     requiredVersion: deps["react-dom"],
+      //   },
+      // },
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",

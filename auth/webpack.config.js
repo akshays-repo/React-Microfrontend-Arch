@@ -50,18 +50,19 @@ module.exports = {
       exposes: {
         './App1Index': './src/bootstrap',
       },
-      shared: {
-        ...deps,
-        react: {
-          eager: true,
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: deps["react-dom"],
-        },
-      },
+      shared: deps,
+      //  {
+      //   ...deps,
+      //   react: {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: deps.react,
+      //   },
+      //   "react-dom": {
+      //     singleton: true,
+      //     requiredVersion: deps["react-dom"],
+      //   },
+      // },
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
