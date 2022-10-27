@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { HistoryStrategy } from "../types";
 import AppRouter from "../router/Router";
 import { store } from "./store";
+import "../index.css";
 
 interface AppProps {
   history: HistoryStrategy;
