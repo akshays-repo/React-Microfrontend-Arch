@@ -15,24 +15,6 @@ import Link from "@mui/material/Link";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const tiers = [
   {
     title: "Manger",
@@ -42,7 +24,7 @@ const tiers = [
     buttonText: "Sign up for free",
     buttonVariant: "outlined",
     onClick: () => {
-      window.location.href = "/cowboy";
+      window.location.href = "/manager";
     },
   },
   {
@@ -64,7 +46,7 @@ const tiers = [
     buttonText: "Contact us",
     buttonVariant: "outlined",
     onClick: () => {
-      window.location.href = "/cowboy";
+      window.location.href = "/crm";
     },
   },
 ];

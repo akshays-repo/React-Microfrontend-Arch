@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { mount } from "manager/ManagerIndex";
-import { cowBoyRoutingPrefix, shellBrowserHistory } from "../router/constants";
+import { managerRoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
-const managerBaseName = `/${cowBoyRoutingPrefix}`;
+const managerBaseName = `/${managerRoutingPrefix}`;
 
 export default () => {
   const wrapperRef = useRef<HTMLDivElement>(null);

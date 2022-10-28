@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export function Page2() {
   return (
     <React.Fragment>
-      <div>Page 2 from crm</div>
-      <Link to="/page-1">Go to Page 1</Link>
+      <div>Welcome to CRM page one </div>
+      <Link to="/page-1">Go to Page 2</Link>
     </React.Fragment>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { mount } from "crm/CrmIndex";
-import { cowBoyRoutingPrefix, shellBrowserHistory } from "../router/constants";
+import { crmRoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
-const crmBaseName = `/${cowBoyRoutingPrefix}`;
+const crmBaseName = `/${crmRoutingPrefix}`;
 
 export default () => {
   const wrapperRef = useRef<HTMLDivElement>(null);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
   Route,
@@ -46,16 +46,18 @@ export const App = ({ history }: AppProps) => {
   }, [history]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route index element={<Page1 />} />
-            <Route path="page-1" element={<Page1 />} />
-            <Route path="page-2" element={<Page2 />} />
-          </Routes>
-        </HistoryRouter>
-      </Provider>
-    </ThemeProvider>
+    <Suspense fallback={<div>Loading....</div>}>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <HistoryRouter history={history}>
+            <Routes>
+              <Route index element={<Page1 />} />
+              <Route path="page-1" element={<Page1 />} />
+              <Route path="page-2" element={<Page2 />} />
+            </Routes>
+          </HistoryRouter>
+        </Provider>
+      </ThemeProvider>
+    </Suspense>
   );
 };
