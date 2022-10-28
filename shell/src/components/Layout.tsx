@@ -6,7 +6,6 @@ import { app1RoutingPrefix, app2RoutingPrefix } from "../router/constants";
 export function Layout() {
   return (
     <>
-      <Counter />
       <nav style={{ marginBottom: "3rem" }}>
         <Link
           to={`/${app1RoutingPrefix}/login`}

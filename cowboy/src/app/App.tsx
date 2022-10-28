@@ -11,6 +11,8 @@ import { Page1 } from "../pages/Page1";
 import { Page2 } from "../pages/Page2";
 import { HistoryStrategy } from "../types";
 import { store } from "./store";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "../theme/theme";
 
 interface AppProps {
   history: HistoryStrategy;
@@ -44,14 +46,16 @@ export const App = ({ history }: AppProps) => {
   }, [history]);
 
   return (
-    <Provider store={store}>
-      <HistoryRouter history={history}>
-        <Routes>
-          <Route index element={<Page1 />} />
-          <Route path="page-1" element={<Page1 />} />
-          <Route path="page-2" element={<Page2 />} />
-        </Routes>
-      </HistoryRouter>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <Routes>
+            <Route index element={<Page1 />} />
+            <Route path="page-1" element={<Page1 />} />
+            <Route path="page-2" element={<Page2 />} />
+          </Routes>
+        </HistoryRouter>
+      </Provider>
+    </ThemeProvider>
   );
 };

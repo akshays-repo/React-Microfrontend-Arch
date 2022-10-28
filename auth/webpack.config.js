@@ -4,7 +4,8 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "https://whimsical-cucurucho-66e6ae.netlify.app/",
+    // publicPath: "https://whimsical-cucurucho-66e6ae.netlify.app/",
+    publicPath: "http://localhost:8081/",
   },
 
   resolve: {
@@ -50,19 +51,19 @@ module.exports = {
       exposes: {
         './App1Index': './src/bootstrap',
       },
-      shared: deps,
-      //  {
-      //   ...deps,
-      //   react: {
-      //     eager: true,
-      //     singleton: true,
-      //     requiredVersion: deps.react,
-      //   },
-      //   "react-dom": {
-      //     singleton: true,
-      //     requiredVersion: deps["react-dom"],
-      //   },
-      // },
+      shared:
+      {
+        ...deps,
+        react: {
+          eager: true,
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",

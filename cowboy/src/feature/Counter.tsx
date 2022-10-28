@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+import Chip from "@mui/material/Chip";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
@@ -10,19 +12,16 @@ export function Counter() {
   return (
     <div>
       <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
+        <Button onClick={() => dispatch(increment())} variant="contained">
           Increment app2
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
+        </Button>
+
+        <span>
+          <Chip label={count} />
+        </span>
+        <Button onClick={() => dispatch(decrement())} variant="contained">
           Increment app2
-        </button>
+        </Button>
       </div>
     </div>
   );
