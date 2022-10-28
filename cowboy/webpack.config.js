@@ -2,9 +2,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
+
+// publicPath: "https://vocal-taiyaki-edfb31.netlify.app/",
+
 module.exports = {
   output: {
-    publicPath: "https://vocal-taiyaki-edfb31.netlify.app/",
+    publicPath: "http://localhost:8082/",
   },
 
   resolve: {
@@ -50,19 +53,19 @@ module.exports = {
       exposes: {
         './App2Index': './src/bootstrap',
       },
-      shared: deps
+      shared:
 
-      // {
-      //   ...deps,
-      //   react: {
-      //     singleton: true,
-      //     requiredVersion: deps.react,
-      //   },
-      //   "react-dom": {
-      //     singleton: true,
-      //     requiredVersion: deps["react-dom"],
-      //   },
-      // },
+      {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
