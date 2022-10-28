@@ -100,6 +100,9 @@ function DashboardFeature() {
                 onClick={() => {
                   tier.onClick();
                 }}
+                sx={{
+                  cursor: "pointer",
+                }}
               >
                 <CardHeader
                   title={tier.title}

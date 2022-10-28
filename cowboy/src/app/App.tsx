@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
+  Navigate,
   Route,
   Routes,
   unstable_HistoryRouter as HistoryRouter,
@@ -50,7 +51,7 @@ export const App = ({ history }: AppProps) => {
       <Provider store={store}>
         <HistoryRouter history={history}>
           <Routes>
-            <Route index element={<Page1 />} />
+            <Route index element={<Navigate to={"page-1"} />} />
             <Route path="page-1" element={<Page1 />} />
             <Route path="page-2" element={<Page2 />} />
           </Routes>

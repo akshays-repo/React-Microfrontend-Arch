@@ -100,6 +100,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               onClick={() => {
+                localStorage.setItem("isLogin", true);
                 navigate(URLS.DASHBOARDS);
               }}
               sx={{ mt: 3, mb: 2 }}

@@ -3,9 +3,13 @@ import { mount } from "app2/App2Index";
 import { cowBoyRoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
+import { ErrorBoundary } from "react-error-boundary";
+
 const cowBoyBasename = `/${cowBoyRoutingPrefix}`;
 
-export default () => {
+import { ErrorFallback } from "../components/ErrorFallBack";
+
+export const CowBoyMF = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -52,4 +56,17 @@ export default () => {
   }, []);
 
   return <div ref={wrapperRef} />;
+};
+
+export default () => {
+  return (
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        // reset the state of your app so the error doesn't happen again
+      }}
+    >
+      <CowBoyMF />
+    </ErrorBoundary>
+  );
 };

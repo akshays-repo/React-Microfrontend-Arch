@@ -8,9 +8,16 @@ type Mount = {
   mountPoint: HTMLElement;
   initialPathname?: string;
   historyStrategy?: HistoryStrategy;
+  onSignIn?: () => boolean;
 };
 
-const mount = ({ mountPoint, initialPathname, historyStrategy }: Mount) => {
+const mount = ({
+  mountPoint,
+  initialPathname,
+  historyStrategy,
+
+  onSignIn,
+}: Mount) => {
   const history =
     historyStrategy ||
     createMemoryHistory({
