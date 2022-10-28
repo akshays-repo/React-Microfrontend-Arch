@@ -8,6 +8,7 @@ import {
 import { LoginPage } from "../pages/LoginPage";
 import { SignUpPage } from "../pages/SignUp";
 import { URLS } from "./url";
+import DashboardPage from "../pages/DashboardPage";
 
 interface Props {
   history: HistoryStrategy;
@@ -21,6 +22,7 @@ const AppRouter: FC<Props> = ({ history }) => {
           <Route index element={<LoginPage />} />
           <Route path={URLS.LOGIN} element={<LoginPage />} />
           <Route path={URLS.SIGNUP} element={<SignUpPage />} />
+          <Route path={URLS.DASHBOARDS} element={<DashboardPage />} />
         </Routes>
       </HistoryRouter>
     </div>

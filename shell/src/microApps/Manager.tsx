@@ -1,33 +1,33 @@
 import React, { useEffect, useRef } from "react";
-import { mount } from "app2/App2Index";
-import { app2RoutingPrefix, shellBrowserHistory } from "../router/constants";
+import { mount } from "manager/ManagerIndex";
+import { cowBoyRoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
-const app2Basename = `/${app2RoutingPrefix}`;
+const managerBaseName = `/${cowBoyRoutingPrefix}`;
 
 export default () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen to navigation events dispatched inside app2 mfe.
+    // Listen to navigation events dispatched inside manager mfe.
     const app2NavigationEventHandler = (event: Event) => {
       const pathname = (event as CustomEvent<string>).detail;
-      const newPathname = `${app2Basename}${pathname}`;
+      const newPathname = `${managerBaseName}${pathname}`;
       if (newPathname === shellBrowserHistory.location.pathname) {
         return;
       }
       navigate(newPathname);
     };
-    window.addEventListener("[app2] navigated", app2NavigationEventHandler);
+    window.addEventListener("[manager] navigated", app2NavigationEventHandler);
 
-    // Listen to navigation events in shell app to notifify app2 mfe.
+    // Listen to navigation events in shell app to notifify manager mfe.
     const unlistenHistoryChanges = shellBrowserHistory.listen(
       ({ location }) => {
-        if (location.pathname.startsWith(app2Basename)) {
+        if (location.pathname.startsWith(managerBaseName)) {
           window.dispatchEvent(
             new CustomEvent("[shell] navigated", {
-              detail: location.pathname.replace(app2Basename, ""),
+              detail: location.pathname.replace(managerBaseName, ""),
             })
           );
         }
@@ -37,14 +37,14 @@ export default () => {
     mount({
       mountPoint: wrapperRef.current!,
       initialPathname: shellBrowserHistory.location.pathname.replace(
-        app2Basename,
+        managerBaseName,
         ""
       ),
     });
 
     return () => {
       window.removeEventListener(
-        "[app2] navigated",
+        "[manager] navigated",
         app2NavigationEventHandler
       );
       unlistenHistoryChanges();

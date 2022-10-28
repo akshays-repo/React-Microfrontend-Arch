@@ -7,22 +7,32 @@ import {
 } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import {
-  app1RoutingPrefix,
-  app2RoutingPrefix,
+  authRoutingPrefix,
+  cowBoyRoutingPrefix,
+  crmRoutingPrefix,
+  managerRoutingPrefix,
   shellBrowserHistory,
 } from "./constants";
 
-const App1Lazy = lazy(() => import("../microApps/Authentication"));
-const App2Lazy = lazy(() => import("../microApps/App2"));
+const AuthLazy = lazy(() => import("../microApps/Authentication"));
+const CowBoyLazy = lazy(() => import("../microApps/CowBoy"));
+
+const CrmLazy = lazy(() => import("../microApps/Crm"));
+const ManagerLazy = lazy(() => import("../microApps/Manager"));
 
 export function Router() {
   return (
     <HistoryRouter history={shellBrowserHistory}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to={`/${app1RoutingPrefix}`} />} />
-          <Route path={`/${app1RoutingPrefix}/*`} element={<App1Lazy />} />
-          <Route path={`/${app2RoutingPrefix}/*`} element={<App2Lazy />} />
+          <Route index element={<Navigate to={`/${authRoutingPrefix}`} />} />
+          <Route path={`/${authRoutingPrefix}/*`} element={<AuthLazy />} />
+          <Route path={`/${cowBoyRoutingPrefix}/*`} element={<CowBoyLazy />} />
+          <Route path={`/${crmRoutingPrefix}/*`} element={<CrmLazy />} />
+          <Route
+            path={`/${managerRoutingPrefix}/*`}
+            element={<ManagerLazy />}
+          />
         </Route>
       </Routes>
     </HistoryRouter>

@@ -1,16 +1,13 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const path = require('path')
 
 const deps = require("./package.json").dependencies;
 
-// publicPath: "https://cosmic-malabi-a836ee.netlify.app/",
+// publicPath: "https://vocal-taiyaki-edfb31.netlify.app/",
 
 module.exports = {
-
-  entry: './src/index.ts',
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: "http://localhost:8083/",
   },
 
   resolve: {
@@ -18,7 +15,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 8080,
+    port: 8083,
     historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -50,17 +47,14 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "shell",
+      name: "manager",
       filename: "remoteEntry.js",
-      remotes: {
-        app1: 'app1@http://localhost:8081/remoteEntry.js',
-        app2: 'app2@http://localhost:8082/remoteEntry.js',
-        manager: 'manager@http://localhost:8083/remoteEntry.js',
-        crm: 'crm@http://localhost:8084/remoteEntry.js',
-
+      remotes: {},
+      exposes: {
+        './ManagerIndex': './src/bootstrap',
       },
-      exposes: {},
       shared:
+
       {
         ...deps,
         react: {

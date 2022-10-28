@@ -1,34 +1,33 @@
 import React, { useEffect, useRef } from "react";
-import { mount } from "app1/App1Index";
-import { authRoutingPrefix, shellBrowserHistory } from "../router/constants";
+import { mount } from "crm/CrmIndex";
+import { cowBoyRoutingPrefix, shellBrowserHistory } from "../router/constants";
 import { useNavigate } from "react-router-dom";
 
-const authBasename = `/${authRoutingPrefix}`;
+const crmBaseName = `/${cowBoyRoutingPrefix}`;
 
 export default () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen to navigation events dispatched inside app2 mfe.
+    // Listen to navigation events dispatched inside crm mfe.
     const app2NavigationEventHandler = (event: Event) => {
       const pathname = (event as CustomEvent<string>).detail;
-      const newPathname = `${authBasename}${pathname}`;
+      const newPathname = `${crmBaseName}${pathname}`;
       if (newPathname === shellBrowserHistory.location.pathname) {
         return;
       }
       navigate(newPathname);
     };
+    window.addEventListener("[crm] navigated", app2NavigationEventHandler);
 
-    window.addEventListener("[app1] navigated", app2NavigationEventHandler);
-
-    // Listen to navigation events in shell app to notify app1 mfe.
+    // Listen to navigation events in shell app to notifify crm mfe.
     const unlistenHistoryChanges = shellBrowserHistory.listen(
       ({ location }) => {
-        if (location.pathname.startsWith(authBasename)) {
+        if (location.pathname.startsWith(crmBaseName)) {
           window.dispatchEvent(
             new CustomEvent("[shell] navigated", {
-              detail: location.pathname.replace(authBasename, ""),
+              detail: location.pathname.replace(crmBaseName, ""),
             })
           );
         }
@@ -38,16 +37,13 @@ export default () => {
     mount({
       mountPoint: wrapperRef.current!,
       initialPathname: shellBrowserHistory.location.pathname.replace(
-        authBasename,
+        crmBaseName,
         ""
       ),
     });
 
     return () => {
-      window.removeEventListener(
-        "[app1] navigated",
-        app2NavigationEventHandler
-      );
+      window.removeEventListener("[crm] navigated", app2NavigationEventHandler);
       unlistenHistoryChanges();
     };
   }, []);

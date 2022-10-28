@@ -2,5 +2,8 @@ import { createBrowserHistory } from "history";
 
 export const shellBrowserHistory = createBrowserHistory();
 
-export const app1RoutingPrefix = "auth";
-export const app2RoutingPrefix = "cowboy";
+export const authRoutingPrefix = "auth";
+export const cowBoyRoutingPrefix = "cowboy";
+
+export const managerRoutingPrefix = "manager";
+export const crmRoutingPrefix = "crm";

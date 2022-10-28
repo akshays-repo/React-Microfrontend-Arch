@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Counter } from "../feature/Counter";
-import { app1RoutingPrefix, app2RoutingPrefix } from "../router/constants";
+import { authRoutingPrefix, cowBoyRoutingPrefix } from "../router/constants";
 
 export function Layout() {
   return (
     <>
-      <nav style={{ marginBottom: "3rem" }}>
+      {/* <nav style={{ marginBottom: "3rem" }}>
         <Link
           to={`/${app1RoutingPrefix}/login`}
           style={{ marginRight: "1rem" }}
@@ -26,7 +26,7 @@ export function Layout() {
           App2 Page1
         </Link>
         <Link to={`/${app2RoutingPrefix}/page-2`}>App2 Page2</Link>
-      </nav>
+      </nav> */}
       <Outlet />
     </>
   );
